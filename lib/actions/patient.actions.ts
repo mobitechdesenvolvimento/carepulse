@@ -1,7 +1,8 @@
-'use server'
+"use server";
 
 import { ID, Query } from "node-appwrite";
 import { users } from "../appwrite.config";
+import { parseStringify } from "../utils";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
@@ -10,7 +11,7 @@ export const createUser = async (user: CreateUserParams) => {
       ID.unique(),
       user.email,
       user.phone,
-      undefined,  // Senha pode ser opcional, dependendo do caso
+      undefined, // Senha pode ser opcional, dependendo do caso
       user.name
     );
 
@@ -28,5 +29,15 @@ export const createUser = async (user: CreateUserParams) => {
 
     // Caso haja outro tipo de erro, você pode lançar ou retornar o erro
     throw new Error(error.message || "Erro ao criar usuário");
+  }
+};
+
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+
+    return parseStringify(user);
+  } catch (error) {
+    console.log(error);
   }
 };
