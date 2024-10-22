@@ -102,6 +102,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               timeInputLabel="Hora:"
               locale={ptBR} // Define o local como ptBR
               wrapperClassName="date-picker"
+              placeholderText="Selecione sua data de nascimento" // Adiciona o placeholder
             />
           </FormControl>
         </div>
